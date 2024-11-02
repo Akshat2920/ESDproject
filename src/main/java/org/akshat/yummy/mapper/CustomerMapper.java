@@ -1,6 +1,7 @@
 package org.akshat.yummy.mapper;
 
 import org.akshat.yummy.dto.CustomerRequest;
+import org.akshat.yummy.dto.CustomerResponse;
 import org.akshat.yummy.entity.Customer;
 import org.springframework.stereotype.Service;
 @Service
@@ -17,5 +18,17 @@ public class CustomerMapper {
                 .city(request.city())
                 .pincode(request.pincode())
                 .build();
+    }
+
+    public CustomerResponse toCustomerResponse(Customer customer) {
+        return new CustomerResponse(
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getEmail(),
+                customer.getAddressLine1(),
+                customer.getAddressLine2(),
+                customer.getCity(),
+                customer.getPincode()
+        );
     }
 }
