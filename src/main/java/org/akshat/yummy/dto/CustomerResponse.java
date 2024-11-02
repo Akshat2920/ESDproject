@@ -20,7 +20,7 @@ public record CustomerResponse (
 
         @JsonProperty("city")
         String city,
-        
+
         @JsonProperty("pincode")
         String pincode
 ) {
