@@ -18,10 +18,10 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "firstname", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "lastname")
     private String lastName;
 
     @Column(name = "email", nullable = false, unique = true)
@@ -30,10 +30,10 @@ public class Customer {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "addressLine_1", nullable = false)
+    @Column(name = "addresslineone", nullable = false)
     private String addressLine1;
 
-    @Column(name = "addressLine_2", nullable = false)
+    @Column(name = "addresslinetwo", nullable = false)
     private String addressLine2;
 
     @Column(name = "city", nullable = false)

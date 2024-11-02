@@ -6,10 +6,10 @@ public record CustomerRequest(
     @NotNull(message = "Customer should be present")
     @NotEmpty(message = "Customer should be present")
     @NotBlank(message = "Customer should be present")
-    @JsonProperty("first_name")
+    @JsonProperty("firstname")
     String firstName,
 
-    @JsonProperty("last_name")
+    @JsonProperty("lastname")
     String lastName,
 
     @NotNull(message="Customer email is required")
@@ -27,13 +27,13 @@ public record CustomerRequest(
     @NotNull(message = "Address should be present")
     @NotEmpty(message = "Address should be present")
     @NotBlank(message = "Address should be present")
-    @JsonProperty("addressLine1")
+    @JsonProperty("addresslineone")
     String addressLine1,
 
     @NotNull(message = "Address should be present")
     @NotEmpty(message = "Address should be present")
     @NotBlank(message = "Address should be present")
-    @JsonProperty("addressLine2")
+    @JsonProperty("addresslinetwo")
     String addressLine2,
 
     @NotNull(message = "City should be present")

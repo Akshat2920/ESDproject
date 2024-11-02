@@ -22,6 +22,7 @@ public class CustomerService {
     private final CustomerRepo repo;
     private final CustomerMapper mapper;
     private final EncryptionService encryptionService;
+
     public String createCustomer(CustomerRequest request) {
         Customer customer = mapper.toEntity(request);
         customer.setPassword(encryptionService.encode(customer.getPassword()));
@@ -37,5 +38,9 @@ public class CustomerService {
     public CustomerResponse retrieveCustomer(String email) {
         Customer customer = getCustomer(email);
         return mapper.toCustomerResponse(customer);
+    }
+
+    public void deleteCustomer(String email) {
+        repo.delete(getCustomer(email));
     }
 }

@@ -12,10 +12,10 @@ public record CustomerResponse (
         @JsonProperty("email")
         String email,
 
-        @JsonProperty("addressLine1")
+        @JsonProperty("address_line1")
         String addressLine1,
 
-        @JsonProperty("addressLine2")
+        @JsonProperty("address_line2")
         String addressLine2,
 
         @JsonProperty("city")

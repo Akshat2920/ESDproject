@@ -15,12 +15,19 @@ import org.springframework.web.bind.annotation.*;
 public class customerController {
     private final CustomerService customerService;
 
-    @GetMapping("/{email}")
-    public ResponseEntity<CustomerResponse> getCustomer(@PathVariable("email") String email) {
-        return ResponseEntity.ok(customerService.retrieveCustomer(email));
-    }
     @PostMapping
     public ResponseEntity<String> createCustoemr(@RequestBody @Valid CustomerRequest request) {
         return ResponseEntity.ok(customerService.createCustomer(request));
+    }
+    
+    @GetMapping("/fetch/{email}")
+    public ResponseEntity<CustomerResponse> getCustomer(@PathVariable("email") String email) {
+        return ResponseEntity.ok(customerService.retrieveCustomer(email));
+    }
+
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<String> deleteCustomer(@PathVariable("email") String email) {
+        customerService.deleteCustomer(email);
+        return ResponseEntity.ok("Customer deleted successfully");
     }
 }
