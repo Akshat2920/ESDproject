@@ -8,6 +8,7 @@ import org.akshat.yummy.mapper.CustomerMapper;
 import org.akshat.yummy.repo.CustomerRepo;
 import org.akshat.yummy.exception.CustomerNotFoundException;
 import org.akshat.yummy.helper.EncryptionService;
+import org.akshat.yummy.helper.JWTHelper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,14 @@ public class CustomerService {
 
     public void deleteCustomer(String email) {
         repo.delete(getCustomer(email));
+    }
+
+    public String login(CustomerLogin request) {
+        Customer customer = getCustomer(request.email());
+        if(!encryptionService.validates(request.password(), customer.getPassword())) {
+            return "Wrong Password or Email";
+        }
+        JWTHelper jwt = new JWTHelper();
+        return jwt.generateToken(request.email());
     }
 }

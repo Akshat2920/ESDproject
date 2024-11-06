@@ -20,12 +20,12 @@ public class customerController {
         return ResponseEntity.ok(customerService.createCustomer(request));
     }
     
-    @GetMapping("/fetch/{email}")
+    @GetMapping("{email}")
     public ResponseEntity<CustomerResponse> getCustomer(@PathVariable("email") String email) {
         return ResponseEntity.ok(customerService.retrieveCustomer(email));
     }
 
-    @DeleteMapping("/delete/{email}")
+    @DeleteMapping("{email}")
     public ResponseEntity<String> deleteCustomer(@PathVariable("email") String email) {
         customerService.deleteCustomer(email);
         return ResponseEntity.ok("Customer deleted successfully");
