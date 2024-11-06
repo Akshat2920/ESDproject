@@ -32,8 +32,8 @@ public class customerController {
         return ResponseEntity.ok("Customer deleted successfully");
     }
 
-    @PatchMapping
-    public ResponseEntity<String> updateCustomer(@RequestBody @Valid UpdateRequest request) {
-        return ResponseEntity.ok(customerService.updateCustomer(request));
+    @PatchMapping("{email}")
+    public ResponseEntity<String> updateCustomer(@PathVariable("email") String email,@RequestBody @Valid UpdateRequest request) {
+        return ResponseEntity.ok(customerService.updateCustomer(request, email));
     }
 }

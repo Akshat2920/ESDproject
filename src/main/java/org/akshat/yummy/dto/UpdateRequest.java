@@ -12,8 +12,8 @@ public record UpdateRequest
                 @JsonProperty("lastname")
                 String lastName,
 
-                @JsonProperty("email")
-                String email,
+                //@JsonProperty("email")
+                //String email,
 
                 //@NotNull(message = "Password should be present")
                 //@NotEmpty(message = "Password should be present")

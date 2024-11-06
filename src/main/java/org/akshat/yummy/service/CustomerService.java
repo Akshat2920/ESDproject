@@ -23,6 +23,7 @@ public class CustomerService {
     private final CustomerRepo repo;
     private final CustomerMapper mapper;
     private final EncryptionService encryptionService;
+    private final JWTHelper jwt;
 
     public String createCustomer(CustomerRequest request) {
         Customer customer = mapper.toEntity(request);
@@ -33,9 +34,10 @@ public class CustomerService {
     public Customer getCustomer(String email) {
         return repo.findByEmail(email)
                 .orElseThrow(() -> new CustomerNotFoundException(
-                        format("Cannot update Customer:: No customer found with the provided ID:: %s", email)
+                        format("No customer found with the provided ID:: %s", email)
                 ));
     }
+
     public CustomerResponse retrieveCustomer(String email) {
         Customer customer = getCustomer(email);
         return mapper.toCustomerResponse(customer);
@@ -50,32 +52,30 @@ public class CustomerService {
         if(!encryptionService.validates(request.password(), customer.getPassword())) {
             return "Wrong Password or Email";
         }
-        JWTHelper jwt = new JWTHelper();
         return jwt.generateToken(request.email());
     }
 
-    public String updateCustomer(UpdateRequest request) {
-        Optional<Customer> curVal = repo.findByEmail(request.email());
+    public String updateCustomer(UpdateRequest request, String email) {
+        Customer curVal = getCustomer(email);
         if(request.firstName()!=null){
-            curVal.get().setFirstName(request.firstName());
+            curVal.setFirstName(request.firstName());
         }
         if(request.lastName()!=null){
-            curVal.get().setFirstName(request.lastName());
+            curVal.setFirstName(request.lastName());
         }
         if(request.addressLine1()!=null){
-            curVal.get().setAddressLine1(request.addressLine1());
+            curVal.setAddressLine1(request.addressLine1());
         }
         if(request.addressLine2()!=null){
-            curVal.get().setAddressLine2(request.addressLine2());
+            curVal.setAddressLine2(request.addressLine2());
         }
         if(request.city()!=null){
-            curVal.get().setCity(request.city());
+            curVal.setCity(request.city());
         }
         if(request.pincode()!=null){
-            curVal.get().setPincode(request.pincode());
+            curVal.setPincode(request.pincode());
         }
-        repo.save(curVal.get());
-        return "account updated";
+        repo.save(curVal);
+        return "Account updated";
     }
-
 }
