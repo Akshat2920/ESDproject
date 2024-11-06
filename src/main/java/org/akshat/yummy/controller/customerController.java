@@ -3,6 +3,7 @@ package org.akshat.yummy.controller;
 import org.akshat.yummy.dto.CustomerRequest;
 import org.akshat.yummy.dto.CustomerResponse;
 import org.akshat.yummy.service.CustomerService;
+import org.akshat.yummy.dto.UpdateRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,5 +30,10 @@ public class customerController {
     public ResponseEntity<String> deleteCustomer(@PathVariable("email") String email) {
         customerService.deleteCustomer(email);
         return ResponseEntity.ok("Customer deleted successfully");
+    }
+
+    @PatchMapping
+    public ResponseEntity<String> updateCustomer(@RequestBody @Valid UpdateRequest request) {
+        return ResponseEntity.ok(customerService.updateCustomer(request));
     }
 }
