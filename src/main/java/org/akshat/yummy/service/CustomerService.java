@@ -13,8 +13,6 @@ import org.akshat.yummy.helper.JWTHelper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 import static java.lang.String.format;
 @Service
 @RequiredArgsConstructor
