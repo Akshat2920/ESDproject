@@ -3,7 +3,7 @@ package org.akshat.yummy.service;
 import org.akshat.yummy.dto.CustomerRequest;
 import org.akshat.yummy.dto.CustomerResponse;
 import org.akshat.yummy.dto.CustomerLogin;
-import org.akshat.yummy.dto.UpdateRequest;
+import org.akshat.yummy.dto.CustomerUpdate;
 import org.akshat.yummy.entity.Customer;
 import org.akshat.yummy.mapper.CustomerMapper;
 import org.akshat.yummy.repo.CustomerRepo;
@@ -53,7 +53,7 @@ public class CustomerService {
         return jwt.generateToken(request.email());
     }
 
-    public String updateCustomer(UpdateRequest request, String email) {
+    public String updateCustomer(CustomerUpdate request, String email) {
         Customer curVal = getCustomer(email);
         if(request.firstName()!=null){
             curVal.setFirstName(request.firstName());

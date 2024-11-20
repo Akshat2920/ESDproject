@@ -3,7 +3,7 @@ package org.akshat.yummy.controller;
 import org.akshat.yummy.dto.CustomerRequest;
 import org.akshat.yummy.dto.CustomerResponse;
 import org.akshat.yummy.service.CustomerService;
-import org.akshat.yummy.dto.UpdateRequest;
+import org.akshat.yummy.dto.CustomerUpdate;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class customerController {
     private final CustomerService customerService;
 
     @PostMapping
-    public ResponseEntity<String> createCustoemr(@RequestBody @Valid CustomerRequest request) {
+    public ResponseEntity<String> createCustomer(@RequestBody @Valid CustomerRequest request) {
         return ResponseEntity.ok(customerService.createCustomer(request));
     }
     
@@ -33,7 +33,7 @@ public class customerController {
     }
 
     @PatchMapping("{email}")
-    public ResponseEntity<String> updateCustomer(@PathVariable("email") String email,@RequestBody @Valid UpdateRequest request) {
+    public ResponseEntity<String> updateCustomer(@PathVariable("email") String email,@RequestBody @Valid CustomerUpdate request) {
         return ResponseEntity.ok(customerService.updateCustomer(request, email));
     }
 }
